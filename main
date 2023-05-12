@@ -1,0 +1,29 @@
+/*
+ * File:   main.c
+ * Author: pablo
+ *
+ * Created on May 11, 2023
+ */
+
+
+#include <xc.h>
+
+#pragma config FOSC = INTIO67  // Oscillator Selection bits (Internal oscillator block, port function on RA6 and RA7)
+#pragma config PLLCFG = OFF    // 4X PLL Enable (Oscillator used directly)
+#pragma config PRICLKEN = OFF  // Primary clock enable bit (Primary clock is always enabled)
+#pragma config WDTEN = OFF     // Watchdog Timer Enable bits (Watch dog timer is always disabled. SWDTEN has no effect.)
+
+void main(void) {
+    // Configurar el puerto C como salida
+    TRISCbits.TRISC0 = 0;
+    
+    while(1) {
+        // Encender el LED
+        LATCbits.LATC0 = 1;
+        __delay_ms(2500);  // Esperar 500 ms
+        
+        // Apagar el LED
+        LATCbits.LATC0 = 0;
+        __delay_ms(2500);  // Esperar 500 ms
+    }
+}
